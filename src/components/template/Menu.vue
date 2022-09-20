@@ -47,7 +47,7 @@
               <router-link to="/livro">Cadastro</router-link>
             </b-nav-item>
             <b-nav-item>
-              <router-link to="/elivroLista">Listagem</router-link>
+              <router-link to="/livroLista">Listagem</router-link>
             </b-nav-item>
           </b-nav>
         </b-card-body>

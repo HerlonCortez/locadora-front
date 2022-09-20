@@ -1,6 +1,6 @@
 import Vue from "vue"
 export const baseApiUrl = 'http://localhost:8080'
-export const token = '34c3cabe-c4d2-4e13-9cee-a0adaa505654'
+export const token = 'e9603104-36ff-4a44-bb79-7545eb3530c8'
 
 export function showError(e){
   if(e && e.response && e.response.data){
