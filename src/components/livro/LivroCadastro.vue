@@ -74,26 +74,27 @@ export default {
     }
   },
   methods:{
-    save(){
-    this.getEditora(this.editoraId)
+    async save(){
+    const response = await this.getEditora(this.editoraId)
     if(!this.livro.id){
          api.post(`/livros/`, this.livro)
          .then(
-          () => {
+          res => {
             this.$swal('','Salvo com Sucesso','success')
           },
-          () => {
-            this.$swal('','Não foi possível salvar','error')
+          error => {
+            console.log(error.response.data)
+            this.$swal('','Não foi possível salvar: '+error.response.data.message,'error')
           },
         )
      }else{
        api.put(`/livros/${this.livro.id}`, this.livro)
        .then(
-          () => {
+          res => {
             this.$swal('','Alterado com Sucesso','success')
           },
-          () => {
-            this.$swal('','Não foi possível alterar','error')
+          error => {
+            this.$swal('','Não foi possível alterar: '+error.response.data.message,'error')
           },
         )
      }
@@ -106,10 +107,14 @@ export default {
                 this.options = res.data
             })
     },
-    getEditora(id){
-      api.get(`/editoras/${id}`).then(res =>{
+    async getEditora(id){
+     const response = await api.get(`/editoras/${id}`).then(res =>{
         this.livro.editora = res.data
+        return true
+     }).catch(error =>{
+        return error
      })
+     return response
     },
     getlivro(payload){
       this.livro = payload.livro
@@ -121,7 +126,7 @@ export default {
         this.valid.descricao = 'A descrição é obrigatória'
         blocked = true
       }
-      if(!this.livro.editora){
+      if(!this.editoraId){
         this.valid.editora = 'A editora é obrigatória'
         blocked = true
       }

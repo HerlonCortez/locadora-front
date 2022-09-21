@@ -156,21 +156,23 @@ export default {
      if(!this.cliente.id){
          api.post(`/clientes/`, this.cliente)
          .then(
-          () => {
+          res => {
             this.$swal('','Salvo com Sucesso','success')
           },
-          () => {
-            this.$swal('','Não foi possível salvar','error')
+          error => {
+            console.log(error.response.data)
+            this.$swal('','Não foi possível salvar: '+error.response.data.message,'error')
           },
         )
      }else{
        api.put(`/clientes/${this.cliente.id}`, this.cliente)
        .then(
-          () => {
+        res => {
             this.$swal('','Alterado com Sucesso','success')
           },
-          () => {
-            this.$swal('','Não foi possível alterar','error')
+          error => {
+            console.log(error.response.data)
+            this.$swal('','Não foi possível alterar: '+error.response.data.message,'error')
           },
         )
      }
