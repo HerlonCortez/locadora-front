@@ -89,6 +89,7 @@ export default {
          api.post(`/editoras/`, this.editora)
          .then(
           res => {
+            console.log(res)
             this.$swal('','Salvo com Sucesso','success')
           },
           error => {

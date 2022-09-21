@@ -157,6 +157,7 @@ export default {
          api.post(`/clientes/`, this.cliente)
          .then(
           res => {
+            console.log(res)
             this.$swal('','Salvo com Sucesso','success')
           },
           error => {

@@ -80,7 +80,9 @@ export default {
          api.post(`/livros/`, this.livro)
          .then(
           res => {
-            this.$swal('','Salvo com Sucesso','success')
+            if(res.data){
+              this.$swal('','Salvo com Sucesso','success')
+            }
           },
           error => {
             console.log(error.response.data)
