@@ -18,7 +18,7 @@
         <b-col  md="12" sm="12">
             <b-form-group label="Editora" label-for="livro-editora">
                 <b-form-select v-model="editoraId">
-                  <option v-for="option in options" :value="option.id" :v-bind="option.id">{{option.descricao}}</option>
+                  <option v-for="option in options" :value="option.id" :key="option.id">{{option.descricao}}</option>
                 </b-form-select>
                 <p class="validation">{{valid.editora}}</p>
             </b-form-group>
@@ -76,7 +76,8 @@ export default {
   methods:{
     async save(){
     const response = await this.getEditora(this.editoraId)
-    if(!this.livro.id){
+    if(response){
+      if(!this.livro.id){
          api.post(`/livros/`, this.livro)
          .then(
           res => {
@@ -101,6 +102,7 @@ export default {
           },
         )
      }
+    }
      this.livro = {}
      this.valid = {descricao:'', editora:'', autor:'', lancamento:''}
     },
