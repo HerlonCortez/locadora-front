@@ -92,7 +92,9 @@ export default {
        api.put(`/livros/${this.livro.id}`, this.livro)
        .then(
           res => {
-            this.$swal('','Alterado com Sucesso','success')
+            if(res.data){
+              this.$swal('','Alterado com Sucesso','success')
+            }
           },
           error => {
             this.$swal('','Não foi possível alterar: '+error.response.data.message,'error')
