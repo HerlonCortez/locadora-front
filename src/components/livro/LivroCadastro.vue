@@ -18,7 +18,7 @@
         <b-col  md="12" sm="12">
             <b-form-group label="Editora" label-for="livro-editora">
                 <b-form-select v-model="editoraId">
-                  <option v-for="option in options" :value="option.id">{{option.descricao}}</option>
+                  <option v-for="option in options" :value="option.id" :v-bind="option.id">{{option.descricao}}</option>
                 </b-form-select>
                 <p class="validation">{{valid.editora}}</p>
             </b-form-group>
