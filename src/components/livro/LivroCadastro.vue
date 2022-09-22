@@ -85,7 +85,6 @@ export default {
             }
           },
           error => {
-            console.log(error.response.data)
             this.$swal('','Não foi possível salvar: '+error.response.data.message,'error')
           },
         )

@@ -88,23 +88,20 @@ export default {
      if(!this.editora.id){
          api.post(`/editoras/`, this.editora)
          .then(
-          res => {
-            console.log(res)
+          () => {
             this.$swal('','Salvo com Sucesso','success')
           },
           error => {
-            console.log(error.response.data)
             this.$swal('','Não foi possível salvar: '+error.response.data.message,'error')
           },
         )
      }else{
        api.put(`/editoras/${this.editora.id}`, this.editora)
        .then(
-          res => {
+          () => {
             this.$swal('','Alterado com Sucesso','success')
           },
           error => {
-            console.log(error.response.data)
             this.$swal('','Não foi possível alterar: '+error.response.data.message,'error')
           },
         )
